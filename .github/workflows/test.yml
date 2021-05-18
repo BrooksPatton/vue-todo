@@ -1,12 +1,13 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build and Deploy
+name: Test
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [all]
+    pull-request: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +23,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
         with:
@@ -30,6 +31,9 @@ jobs:
           # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
           node-version: 15.x
       - uses: actions/checkout@v2
+      - name: Install
+        run: npm i
+      - name: Test
+        run: npm run test:e2e:headless
       - name: Build
         run: npm run build
-
