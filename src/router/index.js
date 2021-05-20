@@ -1,15 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import FourOhFour from '../views/FourOhFour';
+import Home from '../views/Home';
 
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home,
-  // },
-  
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: "*",
+    component: FourOhFour,
+  }
 ];
 
 const router = new VueRouter({
