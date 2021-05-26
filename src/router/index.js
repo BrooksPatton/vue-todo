@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import FourOhFour from "../views/FourOhFour";
 import Home from "../views/Home";
 import Task from "../views/Task";
+import TaskDetails from "../views/TaskDetails";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: "/tasks/new",
     name: "newTask",
     component: Task,
+  },
+  {
+    path: "/tasks/:id",
+    name: "taskDetails",
+    component: TaskDetails,
   },
   {
     path: "*",

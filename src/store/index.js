@@ -9,10 +9,11 @@ export default new Vuex.Store({
       {
         completed: false,
         name: "Make Vue Todo app",
-        index: 0,
+        id: 0,
+        description: "This is an example todo app task",
       },
     ],
-    nextIndex: 1,
+    nextId: 1,
     statusMessage: {
       count: 0,
       message: "",
@@ -23,7 +24,7 @@ export default new Vuex.Store({
       state.tasks.push(task);
     },
     incrementNextIndex(state) {
-      state.nextIndex += 1;
+      state.nextId += 1;
     },
     incrementStatusMessage(state) {
       state.statusMessage.count += 1;
@@ -34,7 +35,7 @@ export default new Vuex.Store({
   },
   actions: {
     createTask({ state, commit, dispatch }, newTask) {
-      newTask.id = state.nextIndex;
+      newTask.id = state.nextId;
       commit("incrementNextIndex");
       commit("addTask", newTask);
       dispatch("message", "task created");
@@ -45,4 +46,8 @@ export default new Vuex.Store({
     },
   },
   modules: {},
+  getters: {
+    getTaskById: (state) => (taskId) =>
+      state.tasks.find((task) => task.id == taskId),
+  },
 });
