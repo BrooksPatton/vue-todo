@@ -8,6 +8,7 @@
       <checkbox label="Completed" :checked="task.completed"></checkbox>
     </div>
     <div>
+      <bb-button label="Delete" @click="handleDelete"></bb-button>
       <bb-button label="Cancel" @click="handleCancel"></bb-button>
     </div>
   </section>
@@ -37,6 +38,10 @@ export default {
   },
   methods: {
     handleCancel() {
+      this.$router.push("/");
+    },
+    handleDelete() {
+      this.$emit("deleteTask", this.task.id);
       this.$router.push("/");
     },
   },

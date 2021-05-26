@@ -10,7 +10,10 @@
       ></mwc-icon-button>
     </mwc-top-app-bar>
     <main>
-      <router-view @createNewTask="createNewTask"></router-view>
+      <router-view
+        @createNewTask="createNewTask"
+        @deleteTask="deleteTask"
+      ></router-view>
     </main>
     <mwc-snackbar id="message" :labelText="message"></mwc-snackbar>
   </div>
@@ -35,6 +38,9 @@ export default {
       console.log("happened?");
       const snackbar = document.querySelector("#message");
       snackbar.show();
+    },
+    deleteTask(id) {
+      this.$store.dispatch("deleteTaskById", id);
     },
   },
   computed: {

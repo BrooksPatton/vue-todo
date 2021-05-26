@@ -32,6 +32,10 @@ export default new Vuex.Store({
     setStatusMessage(state, message) {
       state.statusMessage.message = message;
     },
+    deleteTaskById(state, taskId) {
+      const taskIndex = state.tasks.findIndex((task) => task.id == taskId);
+      state.tasks.splice(taskIndex, 1);
+    },
   },
   actions: {
     createTask({ state, commit, dispatch }, newTask) {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
     message({ commit }, message) {
       commit("incrementStatusMessage");
       commit("setStatusMessage", message);
+    },
+    deleteTaskById({ commit }, id) {
+      commit("deleteTaskById", id);
     },
   },
   modules: {},
